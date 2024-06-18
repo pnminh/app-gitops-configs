@@ -12,6 +12,11 @@ spec:
       revision: main
       directories:
       - path: apps/*/environments/dev/dev-1
+      # Reference the Kubernetes secret containing the Git token
+      auth:
+        secretKeyRef:
+          name: git-credentials  # Name of the Kubernetes Secret
+          key: token             # Key in the Secret containing the Git token
   template:      
     metadata:
       name: '{{index .path.segments 1}}' 
