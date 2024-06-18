@@ -9,7 +9,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.wwt.com/phammi/app-gitops-configs.git
-      revision: apps
+      revision: main
       directories:
       - path: apps/*/environments/dev/dev-1
   template:      
@@ -22,7 +22,7 @@ spec:
       # Source of the application manifests
       source:
         repoURL: https://github.wwt.com/phammi/app-gitops-configs.git
-        targetRevision: apps
+        targetRevision: main
         path: 'apps/{{index .path.segments 1}}'
         helm:
           valueFiles:
