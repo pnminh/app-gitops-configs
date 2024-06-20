@@ -1,5 +1,6 @@
 # app-gitops-configs
 GitOps for app deployments
+## 
 ## Git secret
 - Since Github requires authentication, we need to add [Git creds](https://argo-cd.readthedocs.io/en/latest/operator-manual/declarative-setup/#repository-credentials) to OCP
 ```

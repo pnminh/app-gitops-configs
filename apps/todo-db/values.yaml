@@ -38,3 +38,12 @@ app-deployment:
         targetPort: db
   route:
     enabled: false
+  azKeyVault:
+    enabled: true
+    loginSecretName: azure-creds
+    vaultKeys:
+      - ocp-secrets
+      - ocp-github-secrets
+    image:
+      path: docker.wwt.com/az-keyvault
+      tag: main-ae7190
