@@ -8,13 +8,15 @@ app-deployment:
     tag: "main-2cd97a3"
   imagePullSecrets: 
     - name: quay
-  env:
-    - name: quarkus.datasource.username
-      value: admin
-    - name: quarkus.datasource.password
-      value: admin
-    - name: quarkus.datasource.jdbc.url
-      value: jdbc:postgresql://todo-db:5432/todo-db
+  command:
+    - /bin/bash
+    - -c
+    - |-
+      source /secrets/ocp-secrets && \
+      QUARKUS_DATASOURCE_USERNAME=$DATABASE_USERNAME \
+      QUARKUS_DATASOURCE_PASSWORD=$DATABASE_PASSWORD \
+      QUARKUS_DATASOURCE_JDBC_URL="jdbc:postgresql://todo-db:5432/$DATABASE_NAME" \
+      exec /usr/local/s2i/run
   livenessProbe:
     httpGet:
       path: /q/health/live
@@ -25,3 +27,6 @@ app-deployment:
       path: /q/health/ready
       port: http
     initialDelaySeconds: 30
+  azKeyVault:
+    enabled: true
+    secretFileDir: /secrets
