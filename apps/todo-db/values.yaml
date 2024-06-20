@@ -47,4 +47,4 @@ app-deployment:
       - ocp-github-secrets
     image:
       path: docker.wwt.com/az-keyvault
-      tag: main-ae7190
+      tag: main-ae7190d
