@@ -8,6 +8,7 @@ app-deployment:
     tag: "main-2cd97a3"
   imagePullSecrets: 
     - name: quay
+    - name: wwt-docker
   command:
     - /bin/bash
     - -c
