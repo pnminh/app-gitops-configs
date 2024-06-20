@@ -8,6 +8,7 @@ app-deployment:
     tag: "1.0.0"
   imagePullSecrets: 
     - name: quay
+    - name: wwt-docker
   env:
     - name: POSTGRES_DB
       value: todo-db
