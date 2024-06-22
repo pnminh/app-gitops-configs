@@ -46,14 +46,6 @@ for environment in dev stage prod; do
     mkdir -p "$ENVIRONMENT_DIR"
     # Create values.yaml for each environment directory
     echo "# Values file for $APP_NAME in $environment environment" > "$ENVIRONMENT_DIR/values.yaml"
-    for cluster in 1 2; do
-        if [ "$cluster" -eq 1 ] || ([ "$cluster" -eq 2 ] && [ "$environment" == "prod" ]); then
-            CLUSTER_DIR="$ENVIRONMENT_DIR/${environment}-${cluster}"
-            mkdir -p "$CLUSTER_DIR"
-            # Create values.yaml for each cluster subdirectory
-            echo "# Values file for $APP_NAME in $environment environment, cluster ${environment}-${cluster}" > "$CLUSTER_DIR/values.yaml"
-        fi
-    done
 done
 
 echo "Folder structure created successfully for $APP_NAME."
