@@ -8,19 +8,15 @@ app-deployment:
     tag: "1.0.0"
   imagePullSecrets: 
     - name: quay
-    - name: wwt-docker
   env:
+    - name: POSTGRES_DB
+      value: todo-db
+    - name: POSTGRES_USER
+      value: admin
+    - name: POSTGRES_PASSWORD
+      value: admin
     - name: PGDATA
       value: /temp/data
-  command:
-    - /bin/bash
-    - -c
-    - |-
-      source /secrets/ocp-secrets && \
-      POSTGRES_DB=$DATABASE_NAME \
-      POSTGRES_USER=$DATABASE_USERNAME \
-      POSTGRES_PASSWORD=$DATABASE_PASSWORD \
-      exec docker-entrypoint.sh postgres
   livenessProbe:
     tcpSocket:
       port: 5432
@@ -42,12 +38,3 @@ app-deployment:
         targetPort: db
   route:
     enabled: false
-  azKeyVault:
-    enabled: true
-    loginSecretName: azure-creds
-    vaultKeys:
-      - ocp-secrets
-      - ocp-github-secrets
-    image:
-      path: docker.wwt.com/az-keyvault
-      tag: main-ae7190d
