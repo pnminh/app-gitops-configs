@@ -27,7 +27,8 @@ spec:
         helm:
           valueFiles:
             - "values.yaml"
-            - "environments/{{.path.basenameNormalized}}/values.yaml"      
+            - "environments/{{.path.basenameNormalized}}/values.yaml"    
+          releaseName:  "{{index .path.segments 1}}"
       # Destination cluster and namespace to deploy the application
       destination:
         server: https://kubernetes.default.svc
