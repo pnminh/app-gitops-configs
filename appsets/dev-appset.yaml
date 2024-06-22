@@ -9,7 +9,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.wwt.com/phammi/app-gitops-configs.git
-      revision: main
+      revision: tekton
       directories:
       - path: apps/*/environments/*
   template:      
@@ -22,7 +22,7 @@ spec:
       # Source of the application manifests
       source:
         repoURL: https://github.com/pnminh/app-gitops-configs.git
-        targetRevision: main
+        targetRevision: tekton
         path: 'apps/{{index .path.segments 1}}'
         helm:
           valueFiles:
