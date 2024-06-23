@@ -1,4 +1,4 @@
 # Values file for todo-db in dev environment
 image:
-  tag: |
+  tag: |-
     ae761c6
